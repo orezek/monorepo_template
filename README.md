@@ -176,7 +176,7 @@ Critical production bugs skip `develop`.
 
 This workflow is not just a suggestion; it is enforced via code and configuration:
 
-1. **Husky Pre-Push Hook**: Blocks pushes from branches that do not adhere to naming conventions (`feature/*`, `bugfix/*`, `hotfix/*`, `release/*`, `chore/*`).
+1. **Husky Pre-Push Hook**: Blocks pushes from branches that do not adhere to naming conventions (`feat/*`, `bugfix/*`, `hotfix/*`, `release/*`, `chore/*`).
 2. **Commitlint**: Blocks commits that do not follow Conventional Commits.
 3. **GitHub Rulesets**:
 
