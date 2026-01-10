@@ -1,0 +1,32 @@
+{
+  "name": "hello-world-exaple",
+  "version": "1.0.0",
+  "description": "Display hello world in the console. Once the monorepo template is adopted it can be safely deleted.",
+  "license": "ISC",
+  "author": "Oldrich Rezek oldrich.rezek@oldrichrezek.com",
+  "private": "true",
+  "type": "module",
+  "engines": {
+    "node": ">=24"
+  },
+  "packageManager": "pnpm@10.13.1",
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/app.js",
+    "dev": "tsx watch src/app.ts",
+    "lint": "eslint . --max-warnings 0",
+    "check-types": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@repo/env-config": "workspace:*",
+    "zod": "catalog:"
+  },
+  "devDependencies": {
+    "@repo/eslint-config": "workspace:*",
+    "@repo/typescript-config": "workspace:*",
+    "@types/node": "catalog:",
+    "eslint": "catalog:",
+    "tsx": "catalog:",
+    "typescript": "catalog:"
+  }
+}

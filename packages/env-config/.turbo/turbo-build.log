@@ -1,0 +1,5 @@
+
+
+> @repo/env-config@ build /Users/aldokezer/Development/monorepo_template/packages/env-config
+> tsc -p tsconfig.json
+
