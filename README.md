@@ -41,7 +41,7 @@ This repository is not just a collection of files; it is an opinionated engineer
 
 ```text
 .
-├── .aiassistant/rules        # AI Persona & Rules definition
+├── .aiassistant/rules        # AI Persona & Rules definition (see monorepo.md)
 ├── apps/                     # Deployable applications
 │   └── hello-world-example/  # Demo app consuming shared packages
 ├── packages/                 # Shared internal libraries
@@ -92,7 +92,7 @@ pnpm install
 
 We strictly enforce architectural patterns. To ensure AI assistants (like Cursor, WebStorm AI, or GitHub Copilot) generate code that adheres to our standards—such as using `pnpm` catalogs and specific TypeScript configurations—we have codified our rules.
 
-**Location:** `.aiassistant/rules/.md`
+**Location:** `.aiassistant/rules/monorepo.md`
 
 ### How to use with WebStorm
 
