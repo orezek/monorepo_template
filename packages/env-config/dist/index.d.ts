@@ -1,4 +1,4 @@
-import { type z } from "zod";
+import { type z } from 'zod';
 /**if
  * Loads and validates environment variables from .env files.
  *
