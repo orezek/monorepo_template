@@ -26,7 +26,7 @@ catalogs:
       version: 2.7.3
     typescript:
       specifier: ^5.9.3
-      version: 5.8.3
+      version: 5.9.3
     zod:
       specifier: ^4.0.0
       version: 4.3.5
@@ -54,7 +54,7 @@ importers:
         specifier: 'catalog:'
         version: 5.9.3
 
-  apps/hello-world-example:
+  apps/app-template:
     dependencies:
       '@repo/env-config':
         specifier: workspace:*
@@ -143,7 +143,11 @@ importers:
         specifier: ^8.37.0
         version: 8.37.0(eslint@9.39.2(jiti@2.6.1))(typescript@5.8.3)
 
-  packages/typescript-config: {}
+  packages/typescript-config:
+    dependencies:
+      typescript:
+        specifier: '>=5.0.0'
+        version: 5.9.3
 
 packages:
 
