@@ -1,6 +1,6 @@
 {
   "name": "monorepo-template",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A repository template for building Node.js and typescript projects.",
   "license": "MIT",
   "author": "Oldrich Rezek oldrich.rezek@oldrichrezek.com",
