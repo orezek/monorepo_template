@@ -1,5 +1,0 @@
-
-
-> hello-world-exaple@1.0.0 lint /Users/aldokezer/Development/monorepo_template/apps/hello-world-example
-> eslint . --max-warnings 0
-

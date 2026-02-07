@@ -1,5 +1,5 @@
 {
-  "name": "hello-world-exaple",
+  "name": "app-template",
   "version": "1.0.0",
   "description": "Display hello world in the console. Once the monorepo template is adopted it can be safely deleted.",
   "license": "ISC",
