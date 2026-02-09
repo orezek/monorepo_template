@@ -86,6 +86,13 @@ Notes:
 
 When creating new applications or packages, follow these templates and prefer `catalog:`/`workspace:*` dependency declarations.
 
+### Scaffold Workflow (Mandatory for New Apps)
+
+- For new Node/console apps under `apps/`, use the scaffold command from repo root: `pnpm scaffold <name>`.
+- Treat `apps/app-template` as the canonical source for app scaffolding unless the user explicitly requests a different app type/framework.
+- Manual folder copy is fallback-only and allowed only when the scaffold script is unavailable or when the user explicitly requests manual scaffolding.
+- Scaffolded apps must include `AGENTS.md` copied from `apps/app-template/AGENTS.md` so app-level agent extensions are preserved.
+
 ### A. New Application Blueprint
 
 **Target Directory:** `apps/<name>`

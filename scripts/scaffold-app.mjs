@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-import { cp, mkdir, readFile, writeFile } from 'node:fs/promises';
+import { cp, mkdir, readFile, stat, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 import process from 'node:process';
 
@@ -13,9 +13,7 @@ if (!appName) {
 
 const validName = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
 if (!validName.test(appName)) {
-  console.error(
-    `Invalid app name "${appName}". Use kebab-case (letters, numbers, dashes).`,
-  );
+  console.error(`Invalid app name "${appName}". Use kebab-case (letters, numbers, dashes).`);
   process.exit(1);
 }
 
@@ -23,6 +21,8 @@ const repoRoot = process.cwd();
 const templateDir = path.join(repoRoot, 'apps', 'app-template');
 const targetDir = path.join(repoRoot, 'apps', appName);
 const targetPackageJsonPath = path.join(targetDir, 'package.json');
+const templateAgentsPath = path.join(templateDir, 'AGENTS.md');
+const targetAgentsPath = path.join(targetDir, 'AGENTS.md');
 
 const excludedNames = new Set([
   'node_modules',
@@ -50,6 +50,17 @@ await cp(templateDir, targetDir, {
     return !excludedNames.has(name);
   },
 });
+
+// Keep app-level agent guidance inheritance consistent in all scaffolded apps.
+try {
+  await stat(templateAgentsPath);
+  await stat(targetAgentsPath);
+} catch {
+  console.error(
+    'Scaffold validation failed: AGENTS.md must exist in apps/app-template and be copied to the new app.',
+  );
+  process.exit(1);
+}
 
 const packageJsonRaw = await readFile(targetPackageJsonPath, 'utf8');
 const packageJson = JSON.parse(packageJsonRaw);

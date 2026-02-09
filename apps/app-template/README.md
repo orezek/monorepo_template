@@ -2,7 +2,7 @@
 
 This folder is the base template for creating new apps in `apps/`.
 
-You can create new apps manually or with the scaffold command.
+Use the scaffold command by default. Manual copy is fallback-only.
 
 ## Scaffold command
 
@@ -18,7 +18,7 @@ Example:
 pnpm scaffold billing-service
 ```
 
-This command creates `apps/<name>` from `apps/app-template`, excludes copied build artifacts (`node_modules`, `dist`, `tsconfig.tsbuildinfo`), and updates the new app's `package.json` `"name"` field.
+This command creates `apps/<name>` from `apps/app-template`, excludes copied build artifacts (`node_modules`, `dist`, `tsconfig.tsbuildinfo`), copies `AGENTS.md`, and updates the new app's `package.json` `"name"` field.
 
 ### `-C` vs `-F` (`--filter`)
 
@@ -43,7 +43,9 @@ pnpm -F billing-service build
 
 Do not delete `apps/app-template`. It is the base template used to create new apps.
 
-## Manual: create a new app from this template
+## Fallback only: manual app creation
+
+Use this section only when `pnpm scaffold <name>` is unavailable or when you explicitly need a manual flow.
 
 1. Pick a new app name in kebab-case, for example `billing-service`.
 2. Copy the template:
