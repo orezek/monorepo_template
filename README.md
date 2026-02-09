@@ -43,7 +43,7 @@ This repository is not just a collection of files; it is an opinionated engineer
 .
 ├── .aiassistant/rules        # AI Persona & Rules definition (see monorepo.md)
 ├── apps/                     # Deployable applications
-│   └── hello-world-example/  # Demo app consuming shared packages
+│   └── app-template/         # Canonical scaffold template for new apps
 ├── packages/                 # Shared internal libraries
 │   ├── env-config/           # Type-safe environment variable parsing
 │   ├── eslint-config/        # Shared ESLint Flat Configurations (Base, React, Next)
@@ -200,10 +200,13 @@ A `docker-compose.yml` is provided to spin up the entire stack locally.
 
 ### Creating a New App
 
-1. Create folder in `apps/`.
-2. Add `package.json`.
-3. Extend shared configs (`tsconfig.json` extends `@repo/typescript-config/nextjs.json`).
-4. Import shared eslint config.
+1. From repo root, scaffold from the template: `pnpm scaffold <app-name>`.
+2. Validate the new app:
+   - `pnpm -C apps/<app-name> lint`
+   - `pnpm -C apps/<app-name> check-types`
+   - `pnpm -C apps/<app-name> build`
+3. Update app-specific files (`README.md`, `.env`, and `src/app.ts`) as needed.
+4. Use manual copy only as fallback when scaffold is unavailable (see `apps/README.md`).
 
 ### Creating a New Package
 

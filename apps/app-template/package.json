@@ -4,7 +4,7 @@
   "description": "Display hello world in the console. Once the monorepo template is adopted it can be safely deleted.",
   "license": "ISC",
   "author": "Oldrich Rezek oldrich.rezek@oldrichrezek.com",
-  "private": "true",
+  "private": true,
   "type": "module",
   "engines": {
     "node": ">=24"

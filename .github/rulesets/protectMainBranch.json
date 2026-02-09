@@ -3,7 +3,7 @@
   "name": "Protect main branch",
   "target": "branch",
   "source_type": "Repository",
-  "source": "LazyLab-io/monorepo_template",
+  "source": "orezek/monorepo_template",
   "enforcement": "active",
   "conditions": {
     "ref_name": {
@@ -28,6 +28,23 @@
         "required_review_thread_resolution": false,
         "automatic_copilot_code_review_enabled": false,
         "allowed_merge_methods": ["merge", "squash", "rebase"]
+      }
+    },
+    {
+      "type": "required_status_checks",
+      "parameters": {
+        "strict_required_status_checks_policy": true,
+        "required_status_checks": [
+          {
+            "context": "CI / lint"
+          },
+          {
+            "context": "CI / types"
+          },
+          {
+            "context": "CI / build"
+          }
+        ]
       }
     }
   ],
