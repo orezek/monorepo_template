@@ -1,5 +1,0 @@
-
-
-> app-template@1.0.0 lint /Users/aldokezer/Development/monorepo_template/apps/app-template
-> eslint . --max-warnings 0
-

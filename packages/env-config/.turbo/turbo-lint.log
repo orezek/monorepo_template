@@ -1,5 +1,0 @@
-
-
-> @repo/env-config@1.0.0 lint /Users/aldokezer/Development/monorepo_template/packages/env-config
-> eslint . --max-warnings 0
-
