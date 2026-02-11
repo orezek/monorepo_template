@@ -1,4 +1,4 @@
-# Monorepo Walking Skeleton (v1.0.0)
+# Monorepo Walking Skeleton (v1.0.1)
 
 A robust, minimal foundation for scalable Node.js applications. This repository serves as a "walking skeleton"—a tiny, fully functional vertical slice of a system that proves the architecture is sound.
 
@@ -50,7 +50,7 @@ This repository is not just a collection of files; it is an opinionated engineer
 │   └── typescript-config/    # Shared TSConfig bases (Node, React, Next)
 ├── .github/                  # GitHub Actions & Rulesets (Branch protection)
 ├── .husky/                   # Git Hooks (Pre-commit, Pre-push, Commit-msg)
-├── docker-compose.yml        # Local orchestration
+├── docker-compose.yml        # Docker workshop placeholder (not wired yet)
 ├── turbo.json                # Build pipeline configuration
 └── pnpm-workspace.yaml       # Workspace & Catalog definitions
 
@@ -76,7 +76,7 @@ pnpm install
 
 ```
 
-3. **Docker**: Required for building images and running local services.
+3. **Docker** (optional for now): Planned for workshop deployment modules. Current Docker files are placeholders and are not yet wired for runnable services.
 
 ### Common Commands
 
@@ -176,7 +176,7 @@ Critical production bugs skip `develop`.
 
 This workflow is not just a suggestion; it is enforced via code and configuration:
 
-1. **Husky Pre-Push Hook**: Blocks pushes from branches that do not adhere to naming conventions (`feat/*`, `bugfix/*`, `hotfix/*`, `release/*`, `chore/*`).
+1. **Husky Pre-Push Hook**: Blocks pushes from branches that do not adhere to naming conventions (`feat/*`, `bugfix/*`, `hotfix/*`, `release/vX.Y.Z`, `chore/*`).
 2. **Commitlint**: Blocks commits that do not follow Conventional Commits.
 3. **GitHub Rulesets**:
 
@@ -188,13 +188,16 @@ This workflow is not just a suggestion; it is enforced via code and configuratio
 
 ### Turbo Prune
 
-Deploying a monorepo can lead to bloated Docker images. We use `turbo prune`.
+Deploying a monorepo can lead to bloated Docker images. `turbo prune` is the target approach we will use in the Docker workshop module.
 
-When building the Docker image for an app (e.g., `web`), Turbo analyzes the dependency graph and generates a "pruned" slice of the monorepo. This slice contains _only_ the package configurations and source code required for that specific app, significantly reducing context size and build time.
+### Current Docker Status
 
-### Docker Compose
+Docker files are placeholders at this stage:
 
-A `docker-compose.yml` is provided to spin up the entire stack locally.
+- `docker-compose.yml` currently defines no runnable services.
+- `apps/app-template/Dockerfile` is intentionally empty.
+
+Use local `pnpm` commands for development and validation until Docker modules are added.
 
 ## 🧩 Adding New Components
 

@@ -15,7 +15,7 @@
         "refs/heads/hotfix/*",
         "refs/heads/bugfix/*",
         "refs/heads/chore/*",
-        "refs/heads/release/*"
+        "refs/heads/release/v*"
       ]
     }
   },

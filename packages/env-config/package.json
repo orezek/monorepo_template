@@ -4,7 +4,7 @@
   "description": "Utility to import env vars checked by Zod.",
   "license": "MIT",
   "author": "Oldrich Rezek oldrich.rezek@oldrichrezek.com",
-  "private": "true",
+  "private": true,
   "type": "module",
   "packageManager": "pnpm@10.13.1",
   "engines": {

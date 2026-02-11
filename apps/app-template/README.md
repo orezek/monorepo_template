@@ -18,7 +18,7 @@ Example:
 pnpm scaffold billing-service
 ```
 
-This command creates `apps/<name>` from `apps/app-template`, excludes copied build artifacts (`node_modules`, `dist`, `tsconfig.tsbuildinfo`), copies `AGENTS.md`, and updates the new app's `package.json` `"name"` field.
+This command creates `apps/<name>` from `apps/app-template`, excludes copied build artifacts (`node_modules`, `dist`, `.turbo`, `tsconfig.tsbuildinfo`), copies `AGENTS.md`, and updates the new app's `package.json` `"name"` field.
 
 ### `-C` vs `-F` (`--filter`)
 
@@ -59,6 +59,7 @@ cp -R apps/app-template apps/billing-service
 ```bash
 rm -rf apps/billing-service/node_modules \
        apps/billing-service/dist \
+       apps/billing-service/.turbo \
        apps/billing-service/tsconfig.tsbuildinfo
 ```
 
