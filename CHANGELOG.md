@@ -4,6 +4,21 @@ All notable changes to this project are documented in this file.
 
 The format is based on Keep a Changelog principles and uses Semantic Versioning.
 
+## [1.0.4] - 2026-02-11
+
+### Changed
+
+- Added explicit agent operating rules in `AGENTS.md`, including:
+  - definition of done expectations
+  - formatting/lint/typecheck enforcement by change type
+  - release metadata synchronization policy
+- Bumped root package version from `1.0.3` to `1.0.4`.
+- Updated root README release label to `v1.0.4`.
+
+### Commit Summary
+
+- `14a495d` docs(agents): add operating rules and done criteria
+
 ## [1.0.3] - 2026-02-11
 
 ### Added
