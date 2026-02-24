@@ -80,13 +80,15 @@ pnpm install
 
 ### Common Commands
 
-| Command            | Description                                           |
-| ------------------ | ----------------------------------------------------- |
-| `pnpm dev`         | Starts the development server for all apps.           |
-| `pnpm build`       | Builds all apps and packages using Turbo caching.     |
-| `pnpm lint`        | Runs ESLint across the entire monorepo.               |
-| `pnpm format`      | Formats all files using Prettier.                     |
-| `pnpm check-types` | Runs TypeScript type checking without emitting files. |
+| Command                 | Description                                           |
+| ----------------------- | ----------------------------------------------------- |
+| `pnpm dev`              | Starts the development server for all apps.           |
+| `pnpm build`            | Builds all apps and packages using Turbo caching.     |
+| `pnpm lint`             | Runs ESLint across the entire monorepo.               |
+| `pnpm format`           | Formats all files using Prettier.                     |
+| `pnpm check-types`      | Runs TypeScript type checking without emitting files. |
+| `pnpm scaffold:app`     | Scaffolds a new app from `apps/app-template`.         |
+| `pnpm scaffold:package` | Scaffolds a new package in `packages/`.               |
 
 ## 🤖 AI & Engineering Standards
 
@@ -203,20 +205,28 @@ Use local `pnpm` commands for development and validation until Docker modules ar
 
 ### Creating a New App
 
-1. From repo root, scaffold from the template: `pnpm scaffold <app-name>`.
-2. Validate the new app:
+1. From repo root, scaffold from the template: `pnpm scaffold:app <app-name>`.
+2. Run `pnpm install` to create workspace links and local binaries for the new app.
+3. Validate the new app:
    - `pnpm -C apps/<app-name> lint`
    - `pnpm -C apps/<app-name> check-types`
    - `pnpm -C apps/<app-name> build`
-3. Update app-specific files (`README.md`, `.env`, and `src/app.ts`) as needed.
-4. Use manual copy only as fallback when scaffold is unavailable (see `apps/README.md`).
+4. Update app-specific files (`README.md`, `.env`, and `src/app.ts`) as needed.
+5. Review `apps/<app-name>/.gitignore` and add framework/tooling-specific local artifacts if needed.
+6. Use manual copy only as fallback when scaffold is unavailable (see `apps/README.md`).
 
 ### Creating a New Package
 
-1. Create folder in `packages/`.
-2. Name it with the scope `@repo/package-name`.
-3. Extend `node-lib.json` or `react-library.json` depending on the use case.
-4. Run `pnpm install`.
+1. From repo root, scaffold a package: `pnpm scaffold:package <name>`.
+2. Choose a type when needed:
+   - `pnpm scaffold:package <name> --type node-lib` (default)
+   - `pnpm scaffold:package <name> --type react-library`
+   - `pnpm scaffold:package <name> --type config-only`
+3. Review generated `package.json`, exports, and source/config entrypoints.
+4. Run `pnpm install` to create workspace links and local binaries for the new package.
+5. Confirm `packages/<name>/.gitignore` matches package-local generated artifacts.
+6. Run validation (`pnpm lint`, `pnpm check-types`, and package-level checks when scripts exist).
+7. Use manual scaffolding only when a package needs a specialized export layout that should not be auto-generated.
 
 ## 📄 License
 

@@ -24,6 +24,7 @@ These instructions are app-local extensions of the repository root rules.
 - Maintain TypeScript config inheritance via `@repo/typescript-config/node-lib.json`.
 - Keep ESLint flat config extending `@repo/eslint-config`.
 - Keep env loading type-safe through `@repo/env-config` + schema validation.
+- Keep `apps/app-template/.gitignore` as the baseline for app-local generated/runtime artifacts.
 
 ## Template-Maintenance Rule
 

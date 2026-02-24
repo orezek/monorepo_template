@@ -7,13 +7,13 @@ Use the scaffold workflow by default.
 Create a new Node/console app from repo root:
 
 ```bash
-pnpm scaffold <app-name>
+pnpm scaffold:app <app-name>
 ```
 
 Example:
 
 ```bash
-pnpm scaffold billing-service
+pnpm scaffold:app billing-service
 ```
 
 What this gives you:
@@ -21,11 +21,20 @@ What this gives you:
 - App created from `apps/app-template`.
 - Build artifacts are excluded (`node_modules`, `dist`, `.turbo`, `tsconfig.tsbuildinfo`).
 - `AGENTS.md` is copied so app-local agent extensions are preserved.
+- Workspace `.gitignore` baseline is copied for app-local generated/runtime artifacts.
 - `package.json` name is updated to your app name.
+
+Before running app-local scripts, run `pnpm install` from repo root so the new workspace gets local binaries and workspace links.
 
 ## Validate the New App
 
-From repo root, run either form:
+From repo root, run:
+
+```bash
+pnpm install
+```
+
+Then run either form:
 
 ```bash
 # by directory
@@ -55,6 +64,7 @@ Then update at minimum:
 
 - `apps/<app-name>/package.json` (`name`, description, author as needed)
 - `apps/<app-name>/README.md`
+- `apps/<app-name>/.gitignore` (if framework/tooling local artifacts differ from the template baseline)
 - `apps/<app-name>/.env`
 - `apps/<app-name>/src/app.ts`
 

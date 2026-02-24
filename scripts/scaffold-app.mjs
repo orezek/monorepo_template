@@ -4,10 +4,33 @@ import { cp, mkdir, readFile, stat, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 import process from 'node:process';
 
-const appName = process.argv[2];
+function printUsage() {
+  console.log('Usage: pnpm scaffold:app <name>');
+  console.log('');
+  console.log('Example:');
+  console.log('  pnpm scaffold:app billing-service');
+}
+
+const args = process.argv.slice(2);
+
+if (args[0] === '--help' || args[0] === '-h') {
+  printUsage();
+  process.exit(0);
+}
+
+if (args.length > 1) {
+  console.error(`Unexpected extra arguments: ${args.slice(1).join(' ')}`);
+  console.error('');
+  printUsage();
+  process.exit(1);
+}
+
+const appName = args[0];
 
 if (!appName) {
-  console.error('Usage: pnpm scaffold <name>');
+  console.error('Missing app name.');
+  console.error('');
+  printUsage();
   process.exit(1);
 }
 
@@ -69,6 +92,7 @@ await writeFile(targetPackageJsonPath, `${JSON.stringify(packageJson, null, 2)}\
 
 console.log(`Created apps/${appName} from apps/app-template.`);
 console.log('Next steps:');
-console.log(`1) pnpm -C apps/${appName} lint`);
-console.log(`2) pnpm -C apps/${appName} check-types`);
-console.log(`3) pnpm -C apps/${appName} build`);
+console.log('1) pnpm install');
+console.log(`2) pnpm -C apps/${appName} lint`);
+console.log(`3) pnpm -C apps/${appName} check-types`);
+console.log(`4) pnpm -C apps/${appName} build`);

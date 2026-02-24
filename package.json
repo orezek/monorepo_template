@@ -9,7 +9,8 @@
   "scripts": {
     "preinstall": "npx only-allow pnpm",
     "prepare": "git config core.hooksPath .husky/_",
-    "scaffold": "node scripts/scaffold-app.mjs",
+    "scaffold:app": "node scripts/scaffold-app.mjs",
+    "scaffold:package": "node scripts/scaffold-package.mjs",
     "build": "turbo run build",
     "start": "turbo run start",
     "dev": "turbo run dev",

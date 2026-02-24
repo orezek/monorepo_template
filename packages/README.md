@@ -37,10 +37,32 @@ Example:
 
 ## Creating a New Package
 
-1. Create a new directory in `packages/`.
-2. Use scope `@repo/<name>` in `package.json`.
-3. Keep package `private: true` unless there is explicit publishing intent.
-4. Use shared configs and scripts aligned to repository standards.
+Default workflow from repo root:
+
+```bash
+pnpm scaffold:package <name>
+```
+
+Supported package types:
+
+- `node-lib` (default)
+- `react-library` via `--type react-library`
+- `config-only` via `--type config-only`
+
+Example:
+
+```bash
+pnpm scaffold:package logger
+pnpm scaffold:package ui --type react-library
+```
+
+Then review:
+
+1. `package.json` metadata, exports, and dependencies.
+2. Generated source/config entrypoints.
+3. Run `pnpm install` from repo root so the new workspace gets local binaries and workspace links.
+4. Workspace-local `.gitignore` so package-specific generated artifacts are ignored.
+5. Shared configs and scripts aligned to repository standards.
 
 Recommended baseline:
 
@@ -65,9 +87,7 @@ Recommended baseline:
     "lint": "eslint . --max-warnings 0",
     "check-types": "tsc -p tsconfig.json --noEmit"
   },
-  "dependencies": {
-    "zod": "catalog:"
-  },
+  "dependencies": {},
   "devDependencies": {
     "@repo/eslint-config": "workspace:*",
     "@repo/typescript-config": "workspace:*",
@@ -92,3 +112,13 @@ pnpm lint
 pnpm check-types
 pnpm build
 ```
+
+For source packages (`node-lib`, `react-library`), also run:
+
+```bash
+pnpm -C packages/<name> lint
+pnpm -C packages/<name> check-types
+pnpm -C packages/<name> build
+```
+
+For `config-only` packages, run package-level checks only if scripts exist.

@@ -14,7 +14,7 @@ apply: always
 - Use `pnpm` only. Never use `npm` or `yarn`.
 - Honor catalog-based dependency management via `pnpm-workspace.yaml`.
 - Prefer `catalog:` versions in `package.json` for external dependencies.
-- Keep monorepo structure boundaries: `apps/<app-name>` for deployable apps and `packages/<scope>-<name>` for shared libraries.
+- Keep monorepo structure boundaries: `apps/<app-name>` for deployable apps and `packages/<name>` for shared libraries.
 - Internal shared imports must use `@repo/*` package imports, never deep relative imports across packages.
 - Use ESLint Flat Config (`eslint.config.js`); do not introduce legacy `.eslintrc*`.
 - TypeScript strictness is mandatory; avoid `any`.
@@ -61,7 +61,7 @@ Notes:
 ### A. Directory Structure
 
 - **`apps/<app-name>`:** Deployable applications (Next.js, Express, Console).
-- **`packages/<scope>-<name>`:** Shared logic, UI kits, utilities, and config packages.
+- **`packages/<name>`:** Shared logic, UI kits, utilities, and config packages.
 
 ### B. The Monorepo Protocol (Importing)
 
@@ -101,10 +101,19 @@ When creating new applications or packages, follow these templates and prefer `c
 
 ### Scaffold Workflow (Mandatory for New Apps)
 
-- For new Node/console apps under `apps/`, use the scaffold command from repo root: `pnpm scaffold <name>`.
+- For new Node/console apps under `apps/`, use the scaffold command from repo root: `pnpm scaffold:app <name>`.
+- After scaffolding a new app workspace, run `pnpm install` from repo root before workspace-local validation commands.
 - Treat `apps/app-template` as the canonical source for app scaffolding unless the user explicitly requests a different app type/framework.
 - Manual folder copy is fallback-only and allowed only when the scaffold script is unavailable or when the user explicitly requests manual scaffolding.
 - Scaffolded apps must include `AGENTS.md` copied from `apps/app-template/AGENTS.md` so app-level agent extensions are preserved.
+
+### Scaffold Workflow (Preferred for New Packages)
+
+- For new shared packages under `packages/`, prefer the scaffold command from repo root: `pnpm scaffold:package <name>`.
+- After scaffolding a new package workspace, run `pnpm install` from repo root before workspace-local validation commands.
+- Supported package types: `node-lib` (default), `react-library`, and `config-only` via `--type`.
+- Manual package scaffolding is allowed when a package requires a highly specialized export layout that would be misleading to generate automatically.
+- Scaffolded packages must include a workspace-local `.gitignore` that matches the package type.
 
 ### A. New Application Blueprint
 
@@ -195,7 +204,7 @@ README.md
 
 ### B. New Shared Package Blueprint
 
-**Target Directory:** `packages/<scope>-<name>`
+**Target Directory:** `packages/<name>`
 **Use Case:** Internal libraries.
 **Constraint:** Must expose `exports` and `types`. Name must start with `@repo/`.
 
@@ -224,9 +233,7 @@ README.md
     "lint": "eslint . --max-warnings 0",
     "check-types": "tsc -p tsconfig.json --noEmit"
   },
-  "dependencies": {
-    "zod": "catalog:"
-  },
+  "dependencies": {},
   "devDependencies": {
     "@repo/eslint-config": "workspace:*",
     "@repo/typescript-config": "workspace:*",

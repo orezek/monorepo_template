@@ -59,3 +59,11 @@ This repository uses project-specific AI guidance.
 
 - Keep release metadata synchronized: `package.json` version, `CHANGELOG.md` entry, and git tag.
 - Do not retag existing versions unless explicitly requested.
+
+### 8) Skills and Scaffolding Workflows
+
+- When a task matches a repository skill in `.agents/skills/*/SKILL.md`, prefer following that skill workflow instead of inventing a new process.
+- Keep skills, scaffold scripts, templates, and rules synchronized when changing onboarding/scaffolding behavior.
+- App scaffolding command: `pnpm scaffold:app <app-name>` (uses `apps/app-template`).
+- Package scaffolding command: `pnpm scaffold:package <name> [--type <node-lib|react-library|config-only>]`.
+- Ensure new workspaces include a workspace-local `.gitignore` aligned to the workspace type.

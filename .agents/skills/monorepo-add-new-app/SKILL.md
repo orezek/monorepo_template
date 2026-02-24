@@ -1,6 +1,6 @@
 ---
 name: monorepo-add-new-app
-description: Create a new deployable app in this pnpm + Turborepo workspace using the mandatory scaffold flow (`pnpm scaffold <app-name>`) and app-template conventions. Trigger when a user asks to add, bootstrap, scaffold, or generate an app under `apps/`, including setup, dependency policy, app-local updates, documentation updates, and validation.
+description: Create a new deployable app in this pnpm + Turborepo workspace using the mandatory scaffold flow (`pnpm scaffold:app <app-name>`) and app-template conventions. Trigger when a user asks to add, bootstrap, scaffold, or generate an app under `apps/`, including setup, dependency policy, app-local updates, documentation updates, and validation.
 ---
 
 # Add New App
@@ -23,7 +23,7 @@ If naming or intent is unclear, ask before running scaffold.
 For new Node/console apps under `apps/`, run from repo root:
 
 ```bash
-pnpm scaffold <app-name>
+pnpm scaffold:app <app-name>
 ```
 
 This is the default and required path unless the scaffold script is unavailable or the user explicitly asks for manual scaffolding.
@@ -33,7 +33,10 @@ The scaffold script:
 - Copies from `apps/app-template` (canonical source)
 - Excludes local artifacts (`node_modules`, `dist`, `.turbo`, `tsconfig.tsbuildinfo`)
 - Verifies `AGENTS.md` is present and copied to the new app
+- Carries over the template `.gitignore` baseline for app-local generated/runtime artifacts
 - Rewrites `apps/<app-name>/package.json` `name` to `<app-name>`
+
+After scaffolding a new app workspace, run `pnpm install` from repo root before package-local lint/typecheck/build commands.
 
 ## 3) Fallback Manual Flow (Fallback-Only)
 
@@ -56,6 +59,7 @@ Then update:
 
 - `apps/<app-name>/package.json` (`name`, description, metadata)
 - `apps/<app-name>/README.md`
+- `apps/<app-name>/.gitignore` if the app uses framework/tooling-specific local artifacts beyond the template baseline
 - `apps/<app-name>/.env` (if app requires env vars)
 - `apps/<app-name>/src/app.ts`
 - Keep `apps/<app-name>/AGENTS.md` inherited from template
@@ -122,6 +126,7 @@ pnpm check-types
 Run app-specific validation:
 
 ```bash
+pnpm install
 pnpm -C apps/<app-name> lint
 pnpm -C apps/<app-name> check-types
 pnpm -C apps/<app-name> build
@@ -138,4 +143,5 @@ Before finishing, confirm:
 - Script and config conventions are unchanged from template standards
 - Dependencies follow `workspace:*` and `catalog:`
 - Formatting/lint/type checks pass
+- `.gitignore` exists and matches app-local generated/runtime artifacts
 - No local artifacts are committed (for example `.turbo/**`)
