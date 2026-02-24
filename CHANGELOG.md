@@ -4,6 +4,22 @@ All notable changes to this project are documented in this file.
 
 The format is based on Keep a Changelog principles and uses Semantic Versioning.
 
+## [1.0.6] - 2026-02-24
+
+### Changed
+
+- Added `pnpm scaffold:package` with a new package scaffold generator (`scripts/scaffold-package.mjs`) supporting `node-lib`, `react-library`, and `config-only` package types.
+- Standardized app scaffolding on `pnpm scaffold:app` and removed the legacy `pnpm scaffold` alias from root scripts and documentation.
+- Aligned repository docs, agent rules, and skills with the current scaffold workflows, package path conventions (`packages/<name>`), and workspace-local `.gitignore` expectations.
+- Improved scaffold guidance and script output to require `pnpm install` after creating a new app/package workspace before running workspace-local validation commands.
+- Added `--help` usage support to `scripts/scaffold-app.mjs` to match the package scaffold UX.
+- Bumped root package version from `1.0.5` to `1.0.6`.
+- Updated root README release label to `v1.0.6`.
+
+### Commit Summary
+
+- `b14fbd9` chore(scaffold): add package scaffold and align app/package workflows
+
 ## [1.0.5] - 2026-02-24
 
 ### Changed
