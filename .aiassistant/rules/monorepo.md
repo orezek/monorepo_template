@@ -76,6 +76,19 @@ Notes:
 - **UI libraries:** extend `@repo/typescript-config/react-library.json`.
 - **ESLint:** extend shared configs from `@repo/eslint-config`.
 
+### D. Workspace `.gitignore` Policy
+
+- Every new workspace under `apps/*` and `packages/*` must include its own `.gitignore`, even when the root `.gitignore` already covers common artifacts.
+- The root `.gitignore` remains the global safety net; workspace `.gitignore` files must capture local, generated, and workspace-specific artifacts that do not belong in VCS.
+- Keep workspace ignore lists minimal and type-aware (for example: Next.js app, Playwright app, library/package). Do not blindly duplicate the entire root `.gitignore`.
+- Maintain this rule in scaffolds/templates: `apps/app-template/.gitignore` for apps and package templates/scaffold flows for `packages/*`.
+- Practical baseline examples (apply as relevant to the workspace type):
+  - Common: `node_modules/`, `.turbo/`, `*.tsbuildinfo`
+  - Next.js apps: `.next/`
+  - Test tooling: `test-results/`, `playwright-report/`, `coverage/`
+  - Build outputs: `dist/`
+  - Local env/runtime files: `.env.local`, `.env.*.local`
+
 ## 4. Coding Quality Standards
 
 - **Type Safety:** keep strict typings and explicit interfaces.
@@ -157,6 +170,18 @@ import { config } from '@repo/eslint-config/base';
 export default config;
 ```
 
+**File: `.gitignore`**
+
+```text
+node_modules/
+.turbo/
+dist/
+*.tsbuildinfo
+coverage/
+.env.local
+.env.*.local
+```
+
 **File: `.dockerignore`**
 
 ```text
@@ -233,6 +258,16 @@ README.md
 ```javascript
 import { config as base } from '@repo/eslint-config/base';
 export default [...base];
+```
+
+**File: `.gitignore`**
+
+```text
+node_modules/
+.turbo/
+dist/
+*.tsbuildinfo
+coverage/
 ```
 
 ## 6. GitFlow & Commit Standards

@@ -4,6 +4,16 @@ All notable changes to this project are documented in this file.
 
 The format is based on Keep a Changelog principles and uses Semantic Versioning.
 
+## [1.0.5] - 2026-02-24
+
+### Changed
+
+- Added an explicit workspace `.gitignore` policy to `.aiassistant/rules/monorepo.md` for all new `apps/*` and `packages/*` workspaces.
+- Added `.gitignore` baseline examples to the app and package scaffolding blueprints in `.aiassistant/rules/monorepo.md`.
+- Populated `apps/app-template/.gitignore` with a reusable baseline for local/generated artifacts (`node_modules/`, `.turbo/`, `dist/`, TypeScript build info, coverage, and local env files).
+- Bumped root package version from `1.0.4` to `1.0.5`.
+- Updated root README release label to `v1.0.5`.
+
 ## [1.0.4] - 2026-02-11
 
 ### Changed
