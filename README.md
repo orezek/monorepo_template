@@ -1,8 +1,18 @@
 # Monorepo Walking Skeleton (v1.0.6)
 
-A robust, minimal foundation for scalable Node.js applications. This repository serves as a "walking skeleton"—a tiny, fully functional vertical slice of a system that proves the architecture is sound.
+An agent-friendly pnpm + Turborepo monorepo starter for Node.js/TypeScript with scaffolded apps/packages, shared configs, and clear engineering standards.
 
 It comes pre-configured with a comprehensive suite of modern tooling to ensure code quality, consistency, and developer ergonomics from day one.
+
+## 🤖 Agent-Friendly by Design
+
+This repository is designed to be straightforward for AI coding agents and humans collaborating with them. The agent-friendly aspects are explicit and versioned in the repo:
+
+- `AGENTS.md`: repository operating rules (definition of done, validation, release expectations, scaffolding commands).
+- `.aiassistant/rules/monorepo.md`: monorepo-specific engineering constraints (dependency policy, boundaries, scaffold standards, workspace `.gitignore` expectations).
+- `.agents/skills/*/SKILL.md`: task workflows for common operations such as creating new apps and packages.
+- Predictable scaffold commands: `pnpm scaffold:app <name>` and `pnpm scaffold:package <name>`.
+- Consistent validation workflow: `pnpm format`, `pnpm lint`, `pnpm check-types`, plus affected workspace checks.
 
 ## 🛠 Architecture & Design Decisions
 
@@ -92,9 +102,11 @@ pnpm install
 
 ## 🤖 AI & Engineering Standards
 
-We strictly enforce architectural patterns. To ensure AI assistants (like Cursor, WebStorm AI, or GitHub Copilot) generate code that adheres to our standards—such as using `pnpm` catalogs and specific TypeScript configurations—we have codified our rules.
+We strictly enforce architectural patterns. To ensure AI assistants (like Cursor, WebStorm AI, or GitHub Copilot) generate code that adheres to our standards, the repository includes layered guidance:
 
-**Location:** `.aiassistant/rules/monorepo.md`
+- `AGENTS.md` for repository operating rules and workflow expectations.
+- `.aiassistant/rules/monorepo.md` for monorepo-specific engineering constraints and scaffolding standards.
+- `.agents/skills/` for reusable task workflows (for example app/package creation).
 
 ### How to use with WebStorm
 
