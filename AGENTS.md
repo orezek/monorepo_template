@@ -67,3 +67,24 @@ This repository uses project-specific AI guidance.
 - App scaffolding command: `pnpm scaffold:app <app-name>` (uses `apps/app-template`).
 - Package scaffolding command: `pnpm scaffold:package <name> [--type <node-lib|react-library|config-only>]`.
 - Ensure new workspaces include a workspace-local `.gitignore` aligned to the workspace type.
+
+## Repository Skills
+
+### Monorepo Skills
+
+- `monorepo-add-new-app`: Scaffold and validate new apps under `apps/` via `pnpm scaffold:app`.
+- `monorepo-add-new-package`: Scaffold and validate new shared packages under `packages/` via `pnpm scaffold:package`.
+
+### LangChain Stack Skills
+
+- `framework-selection`: Decide whether to use LangChain, LangGraph, Deep Agents, or a hybrid architecture.
+- `langchain-dependencies`: Define supported package sets, versions, and setup requirements for LangChain projects.
+- `langchain-fundamentals`: Build standard LangChain agents with tools, middleware, and structured output.
+- `langchain-middleware`: Implement human approval flows and custom middleware behavior.
+- `langchain-rag`: Build retrieval pipelines (loader, split, embed, vector store, retrieve).
+- `langgraph-fundamentals`: Build stateful graph workflows with nodes, edges, `Command`, and streaming.
+- `langgraph-human-in-the-loop`: Implement pause/resume approval and validation flows using interrupts.
+- `langgraph-persistence`: Configure checkpointers, thread-scoped memory, long-term store, and state history.
+- `deep-agents-core`: Build Deep Agents with built-in planning, delegation, memory, and skill loading.
+- `deep-agents-memory`: Configure Deep Agents backends for ephemeral, persistent, and filesystem-backed memory.
+- `deep-agents-orchestration`: Configure task planning, subagent delegation, and interrupt-based approvals.

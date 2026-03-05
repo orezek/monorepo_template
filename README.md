@@ -10,7 +10,7 @@ This repository is designed to be straightforward for AI coding agents and human
 
 - `AGENTS.md`: repository operating rules (definition of done, validation, release expectations, scaffolding commands).
 - `.aiassistant/rules/monorepo.md`: monorepo-specific engineering constraints (dependency policy, boundaries, scaffold standards, workspace `.gitignore` expectations).
-- `.agents/skills/*/SKILL.md`: task workflows for common operations such as creating new apps and packages.
+- `.agents/skills/*/SKILL.md`: task workflows for monorepo scaffolding and LangChain/LangGraph/Deep Agents engineering.
 - Predictable scaffold commands: `pnpm scaffold:app <name>` and `pnpm scaffold:package <name>`.
 - Consistent validation workflow: `pnpm format`, `pnpm lint`, `pnpm check-types`, plus affected workspace checks.
 
@@ -106,7 +106,30 @@ We strictly enforce architectural patterns. To ensure AI assistants (like Cursor
 
 - `AGENTS.md` for repository operating rules and workflow expectations.
 - `.aiassistant/rules/monorepo.md` for monorepo-specific engineering constraints and scaffolding standards.
-- `.agents/skills/` for reusable task workflows (for example app/package creation).
+- `.agents/skills/` for reusable task workflows (monorepo scaffolding plus LangChain/LangGraph/Deep Agents).
+
+### Included Skills
+
+These skills are versioned in this repository under `.agents/skills` so they are available as standard monorepo capabilities for participating agents.
+
+#### Monorepo
+
+- `monorepo-add-new-app`
+- `monorepo-add-new-package`
+
+#### LangChain / LangGraph / Deep Agents
+
+- `framework-selection`
+- `langchain-dependencies`
+- `langchain-fundamentals`
+- `langchain-middleware`
+- `langchain-rag`
+- `langgraph-fundamentals`
+- `langgraph-human-in-the-loop`
+- `langgraph-persistence`
+- `deep-agents-core`
+- `deep-agents-memory`
+- `deep-agents-orchestration`
 
 ### How to use with WebStorm
 
