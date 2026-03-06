@@ -111,6 +111,11 @@ We strictly enforce architectural patterns. To ensure AI assistants (like Cursor
 - `.aiassistant/rules/monorepo.md` for monorepo-specific engineering constraints and scaffolding standards.
 - `.agents/skills/` for reusable task workflows (monorepo scaffolding plus LangChain/LangGraph/Deep Agents).
 
+### Guiding Principles for Agents
+
+1. **Simplicity First:** Choose the simplest solution that fully satisfies current requirements, and avoid speculative complexity.
+2. **Solve Within Constraints:** Do not default to adding more code, layers, or people; first solve within existing constraints and architecture, then expand only when clearly necessary and justified.
+
 ### Included Skills
 
 These skills are versioned in this repository under `.agents/skills` so they are available as standard monorepo capabilities for participating agents.

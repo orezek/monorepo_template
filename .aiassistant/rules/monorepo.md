@@ -23,6 +23,8 @@ apply: always
 
 ### Preferences (Use Unless Task Requires Otherwise)
 
+- Choose the simplest solution that fully satisfies current requirements; avoid speculative complexity.
+- Prefer constraint-driven solutions over adding new code/layers/processes; expand only when clearly necessary and justified.
 - Prioritize Turbo-compatible workflows and cache-friendly task definitions.
 - Reuse existing utilities in `packages/` before adding new helpers.
 - When suggesting impactful refactors/deletions, call out potential Turbo cache invalidation or dependency graph risks.

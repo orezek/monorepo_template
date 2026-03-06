@@ -19,6 +19,11 @@ This repository uses project-specific AI guidance.
 - A deeper `AGENTS.md` may add scoped constraints for a subdirectory, but must not weaken root or monorepo rules.
 - `GEMINI.md` and `CLAUDE.md` are agent-specific entry points that delegate to this file and must not diverge from it.
 
+## Guiding Principles
+
+1. `Simplicity First`: Choose the simplest solution that fully satisfies current requirements. Avoid adding complexity "just in case"; introduce it only when a real need appears.
+2. `Solve Within Constraints`: Do not default to adding more code, layers, or people. First seek a solution within existing constraints and architecture; expand only when clearly necessary and justified.
+
 ## Agent Operating Rules
 
 ### 1) Definition of Done
