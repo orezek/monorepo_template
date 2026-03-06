@@ -17,6 +17,7 @@ This repository uses project-specific AI guidance.
 
 - These instructions apply to the entire repository.
 - A deeper `AGENTS.md` may add scoped constraints for a subdirectory, but must not weaken root or monorepo rules.
+- `GEMINI.md` and `CLAUDE.md` are agent-specific entry points that delegate to this file and must not diverge from it.
 
 ## Agent Operating Rules
 

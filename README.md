@@ -9,6 +9,8 @@ It comes pre-configured with a comprehensive suite of modern tooling to ensure c
 This repository is designed to be straightforward for AI coding agents and humans collaborating with them. The agent-friendly aspects are explicit and versioned in the repo:
 
 - `AGENTS.md`: repository operating rules (definition of done, validation, release expectations, scaffolding commands).
+- `GEMINI.md`: Gemini-specific entry point that delegates to `AGENTS.md`.
+- `CLAUDE.md`: Claude Code-specific entry point that delegates to `AGENTS.md`.
 - `.aiassistant/rules/monorepo.md`: monorepo-specific engineering constraints (dependency policy, boundaries, scaffold standards, workspace `.gitignore` expectations).
 - `.agents/skills/*/SKILL.md`: task workflows for monorepo scaffolding and LangChain/LangGraph/Deep Agents engineering.
 - Predictable scaffold commands: `pnpm scaffold:app <name>` and `pnpm scaffold:package <name>`.
@@ -105,6 +107,7 @@ pnpm install
 We strictly enforce architectural patterns. To ensure AI assistants (like Cursor, WebStorm AI, or GitHub Copilot) generate code that adheres to our standards, the repository includes layered guidance:
 
 - `AGENTS.md` for repository operating rules and workflow expectations.
+- `GEMINI.md` and `CLAUDE.md` as agent-specific entry points that must follow `AGENTS.md`.
 - `.aiassistant/rules/monorepo.md` for monorepo-specific engineering constraints and scaffolding standards.
 - `.agents/skills/` for reusable task workflows (monorepo scaffolding plus LangChain/LangGraph/Deep Agents).
 
