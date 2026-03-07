@@ -54,7 +54,16 @@ Example:
 ```bash
 pnpm scaffold:package logger
 pnpm scaffold:package ui --type react-library
+pnpm scaffold:package commitlint-config --type config-only
+pnpm scaffold:package logger --description "Shared logging utilities"
 ```
+
+The scaffold also accepts `--description "text"` for all package types.
+
+Generated files by package type:
+
+- `node-lib` and `react-library`: `.gitignore`, `README.md`, `package.json`, `tsconfig.json`, `eslint.config.js`, `src/index.ts`
+- `config-only`: `.gitignore`, `README.md`, `package.json`, `index.js`
 
 Then review:
 
@@ -81,6 +90,7 @@ Recommended baseline:
     }
   },
   "types": "./dist/index.d.ts",
+  "files": ["dist", "README.md", "LICENSE"],
   "scripts": {
     "build": "tsc -p tsconfig.json",
     "dev": "tsc -w -p tsconfig.json",

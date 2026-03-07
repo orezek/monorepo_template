@@ -9,6 +9,12 @@ This package provides a "Source of Truth" for code quality, ensuring consistency
 - **Prettier** (formatting conflicts handled automatically)
 - **Turbo** (caching safety)
 
+## Exports
+
+- `@repo/eslint-config/base` -> `config`
+- `@repo/eslint-config/react-internal` -> `config`
+- `@repo/eslint-config/next-js` -> `nextJsConfig`
+
 ---
 
 ## 🏗 Architecture
@@ -37,7 +43,7 @@ This is the parent configuration. It includes:
 - `turbo/no-undeclared-env-vars`: **Crucial for Monorepos.** It warns if you use `process.env.KEY` without listing it in `turbo.json`. If you don't list it, changing that ENV var won't bust the build cache, leading to broken builds.
 
 - **Quality of Life**:
-- `only-warn`: Turns all Errors into Warnings. This prevents the linter from "crashing" your build or local dev server while you are actively typing code.
+- `only-warn`: Normalizes rule output to warnings at the config layer. Repository lint commands still use `--max-warnings 0`, so warnings fail validation runs.
 - `no-unused-vars`: customized to ignore variables starting with `_` (e.g., `_req`, `_args`), which is a common convention for ignored arguments.
 
 ### 2. React Internal (`react-internal.js`)
@@ -69,7 +75,7 @@ Extends `base` and adds:
 
 Depending on the type of package or app you are working on, create an `eslint.config.js` in the root of that package and import the correct configuration.
 
-### A. For Next.js Apps (`apps/web`, `apps/docs`, etc.)
+### A. For Next.js Apps (`apps/<next-app>`)
 
 Use the `next-js` export.
 
@@ -81,7 +87,7 @@ import { nextJsConfig } from '@repo/eslint-config/next-js';
 export default nextJsConfig;
 ```
 
-### B. For React Libraries (`packages/ui`, etc.)
+### B. For React Libraries (`packages/<react-library>`)
 
 Use the `react-internal` export.
 
@@ -93,7 +99,7 @@ import { config as reactConfig } from '@repo/eslint-config/react-internal';
 export default reactConfig;
 ```
 
-### C. For Pure JS/TS Libraries (`packages/utils`, `packages/logger`)
+### C. For Pure JS/TS Libraries (`packages/<node-lib>`)
 
 Use the `base` export.
 

@@ -19,7 +19,7 @@ pnpm scaffold:app billing-service
 What this gives you:
 
 - App created from `apps/app-template`.
-- Build artifacts are excluded (`node_modules`, `dist`, `.turbo`, `tsconfig.tsbuildinfo`).
+- Build artifacts are excluded (`node_modules`, `dist`, `.turbo`, and TypeScript build info files).
 - `AGENTS.md` is copied so app-local agent extensions are preserved.
 - Workspace `.gitignore` baseline is copied for app-local generated/runtime artifacts.
 - `package.json` name is updated to your app name.
@@ -57,7 +57,8 @@ cp -R apps/app-template apps/<app-name>
 rm -rf apps/<app-name>/node_modules \
        apps/<app-name>/dist \
        apps/<app-name>/.turbo \
-       apps/<app-name>/tsconfig.tsbuildinfo
+       apps/<app-name>/tsconfig.tsbuildinfo \
+       apps/<app-name>/tsconfig.tsbuild.info
 ```
 
 Then update at minimum:

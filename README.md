@@ -30,7 +30,7 @@ This repository is not just a collection of files; it is an opinionated engineer
 - _Feature:_ **Catalogs** are used in `pnpm-workspace.yaml` to define external dependencies (like `react`, `zod`, `typescript`) in _one place_. This guarantees that every app in the repo uses the exact same version of a library, preventing "version drift" and "phantom dependency" bugs.
 
 - **Build System:** [Turborepo](https://turbo.build/)
-- _Why:_ As the repo grows, building everything takes too long. Turbo provides **Smart Caching**. If you only touch `apps/web`, Turbo knows it doesn't need to rebuild `apps/docs`.
+- _Why:_ As the repo grows, building everything takes too long. Turbo provides **Smart Caching**. If you only touch one workspace, Turbo can skip rebuilding unaffected workspaces.
 - _Config:_ Defined in `turbo.json`, it handles task orchestration (e.g., "Build libraries before building apps").
 
 ### 2. Code Quality & Consistency
@@ -53,18 +53,26 @@ This repository is not just a collection of files; it is an opinionated engineer
 
 ```text
 .
-├── .aiassistant/rules        # AI Persona & Rules definition (see monorepo.md)
+├── .agents/skills/           # Versioned reusable agent skills
+├── .aiassistant/rules/       # AI rules and monorepo constraints
+├── .github/                  # GitHub Actions and rulesets
+├── .husky/                   # Git hooks configured via `prepare`
+├── AGENTS.md                 # Canonical repository-wide agent instructions
+├── GEMINI.md                 # Gemini entry point delegating to `AGENTS.md`
+├── CLAUDE.md                 # Claude Code entry point delegating to `AGENTS.md`
 ├── apps/                     # Deployable applications
+│   ├── README.md             # App scaffolding workflow
 │   └── app-template/         # Canonical scaffold template for new apps
 ├── packages/                 # Shared internal libraries
+│   ├── README.md             # Package scaffolding workflow
 │   ├── env-config/           # Type-safe environment variable parsing
-│   ├── eslint-config/        # Shared ESLint Flat Configurations (Base, React, Next)
-│   └── typescript-config/    # Shared TSConfig bases (Node, React, Next)
-├── .github/                  # GitHub Actions & Rulesets (Branch protection)
-├── .husky/                   # Git Hooks (Pre-commit, Pre-push, Commit-msg)
+│   ├── eslint-config/        # Shared ESLint Flat Configurations
+│   └── typescript-config/    # Shared TSConfig bases
+├── scripts/                  # Scaffold helper scripts
+├── skills-lock.json          # Installed skill source and hash metadata
 ├── docker-compose.yml        # Docker workshop placeholder (not wired yet)
 ├── turbo.json                # Build pipeline configuration
-└── pnpm-workspace.yaml       # Workspace & Catalog definitions
+└── pnpm-workspace.yaml       # Workspace and catalog definitions
 
 ```
 
@@ -94,8 +102,9 @@ pnpm install
 
 | Command                 | Description                                           |
 | ----------------------- | ----------------------------------------------------- |
-| `pnpm dev`              | Starts the development server for all apps.           |
+| `pnpm dev`              | Runs workspace `dev` scripts through Turbo.           |
 | `pnpm build`            | Builds all apps and packages using Turbo caching.     |
+| `pnpm start`            | Runs workspace `start` scripts after build.           |
 | `pnpm lint`             | Runs ESLint across the entire monorepo.               |
 | `pnpm format`           | Formats all files using Prettier.                     |
 | `pnpm check-types`      | Runs TypeScript type checking without emitting files. |
@@ -104,7 +113,7 @@ pnpm install
 
 ## 🤖 AI & Engineering Standards
 
-We strictly enforce architectural patterns. To ensure AI assistants (like Cursor, WebStorm AI, or GitHub Copilot) generate code that adheres to our standards, the repository includes layered guidance:
+We strictly enforce architectural patterns. To ensure AI assistants (for example Gemini CLI, Claude Code, Codex, or IDE assistants) generate code that adheres to our standards, the repository includes layered guidance:
 
 - `AGENTS.md` for repository operating rules and workflow expectations.
 - `GEMINI.md` and `CLAUDE.md` as agent-specific entry points that must follow `AGENTS.md`.
@@ -265,11 +274,13 @@ Use local `pnpm` commands for development and validation until Docker modules ar
    - `pnpm scaffold:package <name> --type node-lib` (default)
    - `pnpm scaffold:package <name> --type react-library`
    - `pnpm scaffold:package <name> --type config-only`
-3. Review generated `package.json`, exports, and source/config entrypoints.
-4. Run `pnpm install` to create workspace links and local binaries for the new package.
-5. Confirm `packages/<name>/.gitignore` matches package-local generated artifacts.
-6. Run validation (`pnpm lint`, `pnpm check-types`, and package-level checks when scripts exist).
-7. Use manual scaffolding only when a package needs a specialized export layout that should not be auto-generated.
+3. Optionally provide a description: `pnpm scaffold:package <name> --description "Short package description"`.
+4. Review generated `package.json`, exports, and source/config entrypoints.
+5. Run `pnpm install` to create workspace links and local binaries for the new package.
+6. Confirm `packages/<name>/.gitignore` matches package-local generated artifacts.
+7. Run validation (`pnpm lint`, `pnpm check-types`, and package-level checks when scripts exist).
+8. For `config-only` packages, customize `index.js` and README because lint/build/check-types scripts are not generated by default.
+9. Use manual scaffolding only when a package needs a specialized export layout that should not be auto-generated.
 
 ## 📄 License
 
