@@ -25,13 +25,21 @@ export function loadEnv<T extends z.ZodTypeAny>(schema: T, importMetaUrl: string
     path.resolve(appEnvDir, '..', '.env.local'), // 3. .env.local (highest priority)
   ];
 
-  // Read each existing file into process.env.
+  // Merge values from env files first so later files override earlier files
+  // without ever clobbering runtime-provided process.env values.
+  const fileEnv: Record<string, string> = {};
+
   envFiles.forEach((filePath) => {
     if (fs.existsSync(filePath)) {
-      dotenv.config({
-        path: filePath,
-        override: true,
-      });
+      const parsedFile = dotenv.parse(fs.readFileSync(filePath));
+
+      Object.assign(fileEnv, parsedFile);
+    }
+  });
+
+  Object.entries(fileEnv).forEach(([key, value]) => {
+    if (process.env[key] === undefined) {
+      process.env[key] = value;
     }
   });
 

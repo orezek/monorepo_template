@@ -16,13 +16,14 @@ It loads app-local `.env` files, validates values with `zod`, and returns a type
 
 ## Load Order
 
-Files are loaded in this order (later overrides earlier):
+Files are merged in this order (later overrides earlier file values):
 
 1. `.env`
 2. `.env.${NODE_ENV}`
 3. `.env.local`
 
-`NODE_ENV` defaults to `development` when not set.
+Existing `process.env` values always win over all `.env` files. `NODE_ENV` defaults to
+`development` when not set.
 
 ## Usage
 
